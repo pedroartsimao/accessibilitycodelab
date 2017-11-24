@@ -3,7 +3,6 @@ package com.psimao.accessibilitycodelab.features.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import com.psimao.accessibilitycodelab.R
 import com.psimao.accessibilitycodelab.features.timer.TimerDialog
@@ -27,9 +26,10 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        toolbar.title = numberItem.number.toString()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = numberItem.number.toString()
+
         appBar.setBackgroundColor(numberItem.color)
         textViewDescription.text = getString(R.string.detail_description,
                 numberItem.description,

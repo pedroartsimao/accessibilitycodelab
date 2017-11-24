@@ -52,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        android:contentDescription="@string/detail_timer_button_content_description"
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"
         app:srcCompat="@drawable/ic_timer" />

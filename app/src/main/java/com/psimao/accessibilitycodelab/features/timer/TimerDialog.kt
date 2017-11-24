@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import com.psimao.accessibilitycodelab.R
 import kotlinx.android.synthetic.main.dialog_timer.*
 import android.view.Gravity
-
-
+import android.view.accessibility.AccessibilityEvent
 
 class TimerDialog : DialogFragment() {
 
@@ -27,20 +26,28 @@ class TimerDialog : DialogFragment() {
     private val secs by lazy { arguments.getInt(EXTRA_SECONDS, -1) }
     private var timer: CountDownTimer? = null
 
+    private var firstTick = true
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
             inflater.inflate(R.layout.dialog_timer, container, false)
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (secs >= 0) {
-            textViewTimer.text = secs.toString()
             timer = object : CountDownTimer((secs * 1000).toLong(), 1000) {
                 override fun onFinish() {
                     textViewTimer.text = getString(R.string.dialog_timer_finished)
+                    textViewTimer.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED)
                 }
 
                 override fun onTick(millisUntilFinished: Long) {
                     textViewTimer.text = ((millisUntilFinished / 1000) + 1).toString()
+                    // Dialog automatically reads the first value.
+                    if (!firstTick) {
+                        textViewTimer.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUSED)
+                    } else {
+                        firstTick = false
+                    }
                 }
             }
             timer?.start()

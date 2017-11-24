@@ -3,5 +3,6 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="action_settings">Settings</string>
     <string name="detail_description">Hi stranger,\n%1s\n\nClick on the timer button above to start a timer from %2s to 0.</string>
+    <string name="detail_timer_button_content_description">Start timer!</string>
     <string name="dialog_timer_finished">Finished!</string>
 </resources>

@@ -30,6 +30,7 @@ class NumberAdapter(private val dataSet: List<NumberItem>, private val listener:
         private val descriptionTextView by lazy { view.findViewById<TextView>(R.id.textview_description) }
 
         fun bind(thumb: String, description: String, color: Int) {
+            itemView.contentDescription = description
             thumbTextView.text = thumb
             descriptionTextView.text = description
             thumbTextView.setBackgroundColor(color)
