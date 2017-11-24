@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.psimao.accessibilitycodelab.R
 import kotlinx.android.synthetic.main.dialog_timer.*
 import android.view.Gravity
-
+import android.widget.Toast
 
 
 class TimerDialog : DialogFragment() {
@@ -33,14 +33,16 @@ class TimerDialog : DialogFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (secs >= 0) {
-            textViewTimer.text = secs.toString()
-            timer = object : CountDownTimer((secs * 1000).toLong(), 1000) {
+            timer = object : CountDownTimer((secs * 1000).toLong() + 1000, 1000) {
                 override fun onFinish() {
                     textViewTimer.text = getString(R.string.dialog_timer_finished)
                 }
 
                 override fun onTick(millisUntilFinished: Long) {
-                    textViewTimer.text = ((millisUntilFinished / 1000) + 1).toString()
+                    val secsRemaining = (millisUntilFinished / 1000)
+                    if (secsRemaining > 0) {
+                        textViewTimer.text = secsRemaining.toString()
+                    }
                 }
             }
             timer?.start()

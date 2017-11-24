@@ -27,9 +27,10 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        toolbar.title = numberItem.number.toString()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = numberItem.number.toString()
+
         appBar.setBackgroundColor(numberItem.color)
         textViewDescription.text = getString(R.string.detail_description,
                 numberItem.description,
